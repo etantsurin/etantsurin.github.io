@@ -5,44 +5,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Custom Form</title>
     <style>
-        body {
+        body, html {
+            height: 100%;
+            margin: 0;
             font-family: Arial, sans-serif;
-            margin: 40px;
+            background-color: black;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         .form-container {
-            max-width: 600px;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-        }
-        input, textarea {
+            max-width: 400px;
             width: 100%;
-            padding: 10px;
+            padding: 20px;
+        }
+        .question {
+            display: none;
+        }
+        .question.active {
+            display: block;
+        }
+        .pill {
+            display: inline-block;
+            padding: 10px 20px;
             margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            border-radius: 25px;
+            background-color: white;
+            color: black;
+            cursor: pointer;
+        }
+        .pill input {
+            display: none;
+        }
+        .pill label {
+            cursor: pointer;
+        }
+        .next-button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: white;
+            color: black;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
     <div class="form-container">
         <form id="customForm">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
+            <div class="question active" data-question="1">
+                <p>Who are you?</p>
+                <div class="pill"><input type="checkbox" id="gd" name="who[]" value="Graphic Designer"><label for="gd">Graphic Designer</label></div>
+                <div class="pill"><input type="checkbox" id="bo" name="who[]" value="Brand Owner"><label for="bo">Brand Owner</label></div>
+                <div class="pill"><input type="checkbox" id="ms" name="who[]" value="Marketing Specialist"><label for="ms">Marketing Specialist</label></div>
+                <div class="pill"><input type="checkbox" id="td" name="who[]" value="Type Designer"><label for="td">Type Designer</label></div>
+                <div class="pill"><input type="checkbox" id="ux" name="who[]" value="UX/UI Designer"><label for="ux">UX/UI Designer</label></div>
+                <div class="pill"><input type="checkbox" id="other1" name="who[]" value="Other"><label for="other1">Other</label></div>
+                <button type="button" class="next-button">Next</button>
+            </div>
 
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+            <div class="question" data-question="2">
+                <p>What do you want to see in the future?</p>
+                <div class="pill"><input type="checkbox" id="fu" name="future[]" value="More Font Updates"><label for="fu">More Font Updates</label></div>
+                <div class="pill"><input type="checkbox" id="bp" name="future[]" value="Blog Posts"><label for="bp">Blog Posts</label></div>
+                <div class="pill"><input type="checkbox" id="es" name="future[]" value="Exclusive Sales"><label for="es">Exclusive Sales</label></div>
+                <div class="pill"><input type="checkbox" id="other2" name="future[]" value="Other"><label for="other2">Other</label></div>
+                <button type="submit" class="next-button">Submit</button>
+            </div>
 
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" rows="4" required></textarea>
-
-            <button type="submit">Submit</button>
+            <p id="response"></p>
         </form>
-        <p id="response"></p>
     </div>
 
     <script>
+        document.querySelectorAll('.next-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const currentQuestion = button.closest('.question');
+                const nextQuestion = currentQuestion.nextElementSibling;
+                if (nextQuestion && nextQuestion.classList.contains('question')) {
+                    currentQuestion.classList.remove('active');
+                    nextQuestion.classList.add('active');
+                }
+            });
+        });
+
         document.getElementById('customForm').addEventListener('submit', function(event) {
             event.preventDefault();
 
