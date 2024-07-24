@@ -31,9 +31,15 @@
             padding: 10px 20px;
             margin: 10px 0;
             border-radius: 25px;
+            background-color: black;
+            color: white;
+            border: 1px solid white;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .pill.selected {
             background-color: white;
             color: black;
-            cursor: pointer;
         }
         .pill input {
             display: none;
@@ -81,6 +87,14 @@
     </div>
 
     <script>
+        document.querySelectorAll('.pill').forEach(pill => {
+            pill.addEventListener('click', () => {
+                pill.classList.toggle('selected');
+                const checkbox = pill.querySelector('input');
+                checkbox.checked = !checkbox.checked;
+            });
+        });
+
         document.querySelectorAll('.next-button').forEach(button => {
             button.addEventListener('click', () => {
                 const currentQuestion = button.closest('.question');
