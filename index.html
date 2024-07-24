@@ -1,29 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=2.0">
-  <title>Hand Tracking Typography</title>
-  
-  <!-- p5.js library for canvas drawing and ml5.js for hand tracking -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/ml5/0.6.3/ml5.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.min.js"></script>
-  <!-- ml5 -->
-  <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-
-  <!-- CSS for styling -->
-  <link rel="stylesheet" href="style.css">
-
- 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+        .form-container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
-  <div id="canvasContainer">
-    <!-- Video will be drawn here -->
-  </div>
-  
-  <div class="variable">Cat???</div>
-  
-  <script src="sketch.js"></script>
+    <div class="form-container">
+        <form id="customForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+
+            <button type="submit">Submit</button>
+        </form>
+        <p id="response"></p>
+    </div>
+
+    <script>
+        document.getElementById('customForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(this);
+            const jsonData = JSON.stringify(Object.fromEntries(formData.entries()));
+
+            fetch('https://example.com/submit-form', { // Replace with your server endpoint
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: jsonData
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('response').textContent = 'Form submitted successfully!';
+            })
+            .catch(error => {
+                document.getElementById('response').textContent = 'There was an error submitting the form.';
+                console.error('Error:', error);
+            });
+        });
+    </script>
 </body>
 </html>
