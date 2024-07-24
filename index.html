@@ -44,9 +44,6 @@
         .pill input {
             display: none;
         }
-        .pill label {
-            cursor: pointer;
-        }
         .next-button {
             display: block;
             margin: 20px auto;
@@ -64,21 +61,21 @@
         <form id="customForm">
             <div class="question active" data-question="1">
                 <p>Who are you?</p>
-                <div class="pill"><input type="checkbox" id="gd" name="who[]" value="Graphic Designer"><label for="gd">Graphic Designer</label></div>
-                <div class="pill"><input type="checkbox" id="bo" name="who[]" value="Brand Owner"><label for="bo">Brand Owner</label></div>
-                <div class="pill"><input type="checkbox" id="ms" name="who[]" value="Marketing Specialist"><label for="ms">Marketing Specialist</label></div>
-                <div class="pill"><input type="checkbox" id="td" name="who[]" value="Type Designer"><label for="td">Type Designer</label></div>
-                <div class="pill"><input type="checkbox" id="ux" name="who[]" value="UX/UI Designer"><label for="ux">UX/UI Designer</label></div>
-                <div class="pill"><input type="checkbox" id="other1" name="who[]" value="Other"><label for="other1">Other</label></div>
+                <label class="pill"><input type="checkbox" id="gd" name="who[]" value="Graphic Designer">Graphic Designer</label>
+                <label class="pill"><input type="checkbox" id="bo" name="who[]" value="Brand Owner">Brand Owner</label>
+                <label class="pill"><input type="checkbox" id="ms" name="who[]" value="Marketing Specialist">Marketing Specialist</label>
+                <label class="pill"><input type="checkbox" id="td" name="who[]" value="Type Designer">Type Designer</label>
+                <label class="pill"><input type="checkbox" id="ux" name="who[]" value="UX/UI Designer">UX/UI Designer</label>
+                <label class="pill"><input type="checkbox" id="other1" name="who[]" value="Other">Other</label>
                 <button type="button" class="next-button">Next</button>
             </div>
 
             <div class="question" data-question="2">
                 <p>What do you want to see in the future?</p>
-                <div class="pill"><input type="checkbox" id="fu" name="future[]" value="More Font Updates"><label for="fu">More Font Updates</label></div>
-                <div class="pill"><input type="checkbox" id="bp" name="future[]" value="Blog Posts"><label for="bp">Blog Posts</label></div>
-                <div class="pill"><input type="checkbox" id="es" name="future[]" value="Exclusive Sales"><label for="es">Exclusive Sales</label></div>
-                <div class="pill"><input type="checkbox" id="other2" name="future[]" value="Other"><label for="other2">Other</label></div>
+                <label class="pill"><input type="checkbox" id="fu" name="future[]" value="More Font Updates">More Font Updates</label>
+                <label class="pill"><input type="checkbox" id="bp" name="future[]" value="Blog Posts">Blog Posts</label>
+                <label class="pill"><input type="checkbox" id="es" name="future[]" value="Exclusive Sales">Exclusive Sales</label>
+                <label class="pill"><input type="checkbox" id="other2" name="future[]" value="Other">Other</label>
                 <button type="submit" class="next-button">Submit</button>
             </div>
 
